@@ -22,11 +22,15 @@ export class App extends Component {
   addTask = (event) => {
     event.preventDefault();
 
-    // const inputBox = document.getElementById('task');
-
-    this.setState({
-      tasks: [...this.state.tasks, this.state.task],
-    });
+    const inputBox = document.getElementById('task');
+    this.setState(
+      {
+        tasks: [...this.state.tasks, this.state.task],
+      },
+      () => {
+        inputBox.value = '';
+      }
+    );
   };
 
   render() {
