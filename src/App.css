@@ -60,3 +60,12 @@ li {
 i {
   cursor: pointer;
 }
+
+.icons {
+  display: flex;
+  gap: 0.5em;
+}
+
+.center {
+  text-align: center;
+}

@@ -4,25 +4,38 @@ import React, { Component } from 'react';
 class Overview extends Component {
   constructor(props) {
     super(props);
+
+    this.getOutput = this.getOutput.bind();
   }
 
-  render() {
+  getOutput = () => {
     const tasks = this.props.tasks;
+    if (tasks.length <= 0) {
+      return <p className="center"> No tasks</p>;
+    }
 
-    return (
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            {task.text}{' '}
-            <i
-              data-id={task.id}
-              onClick={this.props.deleteTask}
-              className="fa-solid fa-trash"
-            ></i>
-          </li>
-        ))}
-      </ul>
-    );
+    return tasks.map((task) => (
+      <li key={task.id}>
+        {task.text}{' '}
+        <div className="icons">
+          <i
+            data-id={task.id}
+            onClick={this.props.deleteTask}
+            className="fa-solid fa-trash"
+          ></i>
+
+          <i
+            data-id={task.id}
+            onClick={this.props.editTask}
+            className="fa-solid fa-pen-to-square"
+          ></i>
+        </div>
+      </li>
+    ));
+  };
+
+  render() {
+    return <ul>{this.getOutput()}</ul>;
   }
 }
 

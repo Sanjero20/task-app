@@ -18,7 +18,9 @@ const randomTasks = [
 export class App extends Component {
   constructor(props) {
     super(props);
+
     this.deleteTask = this.deleteTask.bind();
+    this.editTask = this.editTask.bind();
 
     this.state = {
       task: {
@@ -29,21 +31,34 @@ export class App extends Component {
     };
   }
 
-  deleteTask = (e) => {
-    const connectedID = e.target.dataset.id;
-    const tasks = this.state.tasks;
-
-    const index = tasks.findIndex((task) => {
-      return task.id == connectedID;
+  getIndex(event) {
+    const index = this.state.tasks.findIndex((task) => {
+      return task.id == event.target.dataset.id;
     });
+
+    return index;
+  }
+
+  deleteTask = (e) => {
+    const tasks = this.state.tasks;
+    const index = this.getIndex(e);
 
     tasks.splice(index, 1);
 
     this.setState({
       tasks: tasks,
     });
+  };
 
-    console.log(index);
+  editTask = (e) => {
+    const tasks = this.state.tasks;
+    const index = this.getIndex(e);
+
+    tasks[index].text = prompt('Edit Task');
+
+    this.setState({
+      tasks: tasks,
+    });
   };
 
   changeValue = (event) => {
@@ -57,6 +72,8 @@ export class App extends Component {
 
   addTask = (event) => {
     event.preventDefault();
+
+    if (this.state.task.text.trim() == '') return;
 
     this.setState({
       tasks: [...this.state.tasks, this.state.task],
@@ -89,6 +106,7 @@ export class App extends Component {
         <Overview
           tasks={this.state.tasks}
           deleteTask={this.deleteTask}
+          editTask={this.editTask}
         ></Overview>
       </div>
     );
