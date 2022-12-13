@@ -1,10 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&family=Yantramanav:wght@400;700&display=swap');
+.App {
+  background-color: white;
+  width: min(350px, 80%);
+  min-height: 300px;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 0.5em;
+  box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
 
-/* 
-font-family: 'Overpass', sans-serif;
-font-family: 'Yantramanav', sans-serif;
-*/
+fieldset {
+  border: 0;
+  display: flex;
+  gap: 0.25em;
+}
 
-* {
-  font-family: 'Overpass', sans-serif;
+label {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+form,
+input {
+  width: 100%;
+}
+
+button {
+  width: 50px;
+}
+
+input,
+button {
+  height: 100%;
+  padding: 0.5em;
+  border: 1px solid black;
+  border-radius: 5px;
 }

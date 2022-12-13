@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&family=Yantramanav:wght@400;700&display=swap');
+
+/* 
+font-family: 'Overpass', sans-serif;
+font-family: 'Yantramanav', sans-serif;
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Overpass', sans-serif;
+}
+
+body,
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: skyblue;
+}

@@ -29,35 +29,32 @@ export class App extends Component {
   addTask = (event) => {
     event.preventDefault();
 
-    const inputBox = document.getElementById('task');
-
-    this.setState(
-      {
-        tasks: [...this.state.tasks, this.state.task],
-        task: {
-          text: '',
-          id: uniqid(),
-        },
+    this.setState({
+      tasks: [...this.state.tasks, this.state.task],
+      task: {
+        text: '',
+        id: uniqid(),
       },
-      () => {
-        inputBox.value = '';
-      }
-    );
+    });
   };
 
   render() {
     return (
-      <div>
+      <div className="App">
         <form onSubmit={this.addTask}>
           <label htmlFor="task">Task</label>
-          <input
-            type="text"
-            id="task"
-            autoComplete="off"
-            value={this.state.task.text}
-            onChange={this.changeValue}
-          />
-          <button onClick={this.addTask}>Add</button>
+          <fieldset>
+            <input
+              type="text"
+              id="task"
+              autoComplete="off"
+              value={this.state.task.text}
+              onChange={this.changeValue}
+            />
+            <button onClick={this.addTask}>
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </fieldset>
         </form>
 
         <Overview tasks={this.state.tasks}></Overview>
