@@ -12,7 +12,7 @@ class Overview extends Component {
     return (
       <div>
         {tasks.map((task) => (
-          <li> {task} </li>
+          <li key={task.id}>{task.text}</li>
         ))}
       </div>
     );
