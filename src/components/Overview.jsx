@@ -10,11 +10,18 @@ class Overview extends Component {
     const tasks = this.props.tasks;
 
     return (
-      <div>
+      <ul>
         {tasks.map((task) => (
-          <li key={task.id}>{task.text}</li>
+          <li key={task.id}>
+            {task.text}{' '}
+            <i
+              data-id={task.id}
+              onClick={this.props.deleteTask}
+              className="fa-solid fa-trash"
+            ></i>
+          </li>
         ))}
-      </div>
+      </ul>
     );
   }
 }

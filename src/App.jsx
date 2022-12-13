@@ -4,18 +4,47 @@ import uniqid from 'uniqid';
 
 import './App.css';
 
+const randomTasks = [
+  {
+    text: 'Do the laundry',
+    id: uniqid(),
+  },
+  {
+    text: 'Study ReactJS',
+    id: uniqid(),
+  },
+];
+
 export class App extends Component {
   constructor(props) {
     super(props);
+    this.deleteTask = this.deleteTask.bind();
 
     this.state = {
       task: {
         text: '',
         id: uniqid(),
       },
-      tasks: [],
+      tasks: [...randomTasks],
     };
   }
+
+  deleteTask = (e) => {
+    const connectedID = e.target.dataset.id;
+    const tasks = this.state.tasks;
+
+    const index = tasks.findIndex((task) => {
+      return task.id == connectedID;
+    });
+
+    tasks.splice(index, 1);
+
+    this.setState({
+      tasks: tasks,
+    });
+
+    console.log(index);
+  };
 
   changeValue = (event) => {
     this.setState({
@@ -52,12 +81,15 @@ export class App extends Component {
               onChange={this.changeValue}
             />
             <button onClick={this.addTask}>
-              <i class="fa-solid fa-plus"></i>
+              <i className="fa-solid fa-plus"></i>
             </button>
           </fieldset>
         </form>
 
-        <Overview tasks={this.state.tasks}></Overview>
+        <Overview
+          tasks={this.state.tasks}
+          deleteTask={this.deleteTask}
+        ></Overview>
       </div>
     );
   }
