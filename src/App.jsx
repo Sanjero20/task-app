@@ -4,17 +4,6 @@ import uniqid from 'uniqid';
 
 import './App.css';
 
-const randomTasks = [
-  {
-    text: 'Do the laundry',
-    id: uniqid(),
-  },
-  {
-    text: 'Study ReactJS',
-    id: uniqid(),
-  },
-];
-
 export class App extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +16,7 @@ export class App extends Component {
         text: '',
         id: uniqid(),
       },
-      tasks: [...randomTasks],
+      tasks: [],
     };
   }
 
@@ -54,7 +43,13 @@ export class App extends Component {
     const tasks = this.state.tasks;
     const index = this.getIndex(e);
 
-    tasks[index].text = prompt('Edit Task');
+    let answer = prompt('Edit Task');
+
+    if (answer == null || answer.length <= 0) {
+      return;
+    }
+
+    tasks[index].text = answer;
 
     this.setState({
       tasks: tasks,
@@ -73,7 +68,10 @@ export class App extends Component {
   addTask = (event) => {
     event.preventDefault();
 
-    if (this.state.task.text.trim() == '') return;
+    if (this.state.task.text.trim() == '') {
+      alert('Must not be empty, Try Again!');
+      return;
+    }
 
     this.setState({
       tasks: [...this.state.tasks, this.state.task],
